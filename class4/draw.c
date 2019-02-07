@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <assert.h>
 
+#define WIDTH 10
+#define HEIGHT 10
+
 // TODO:
 // Make your screen bigger, e.g., 20x20. Replace all references to the size with WIDTH and HEIGHT, so you can change this.
 // Make a function to put a smiley face into the screen array. Start with write_smiley(char** screen, int x, int y), with x=0 and y=0.
@@ -17,7 +20,7 @@
 //
 // Build another function that draws something of your own design.
 
-void write_smiley(char** screen, int x, int y) {
+void write_smiley(char screen[HEIGHT][WIDTH], int x, int y) {
   assert(x >= 0 && x <= 10);
   assert(y >= 0 && y <= 10);
   assert(screen != NULL);
@@ -34,10 +37,10 @@ void print_hline(int size) {
 
 int main(void) {
   // This is our screen, for now.
-  char screen[10][10];
+  char screen[HEIGHT][WIDTH];
 
   // What does memset do? Why are we using it?
-  memset(&screen, ' ', 10*10);
+  memset(&screen, ' ', HEIGHT*WIDTH);
 
   // These print statements talk about how to use sizeof.
   printf("sizeof(char)=%d\n", (int) sizeof(char));
@@ -60,9 +63,9 @@ int main(void) {
   screen[9][9] = '@';
 
   // The following code prints the values in your screen. You'll want to draw smileys before this point.
-  print_hline(12);
-  for(int i=0; i<10; i++) {
-    printf("#%.*s#\n", 10, screen[i]);
+  print_hline(WIDTH+2);
+  for(int i=0; i<HEIGHT; i++) {
+    printf("#%.*s#\n", WIDTH, screen[i]);
   }
-  print_hline(12);
+  print_hline(WIDTH+2);
 }
